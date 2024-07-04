@@ -10,17 +10,21 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <stack>
+#include <map>
 
 class State
 {
 private:
+	sf::RenderWindow* window;
 	std::vector<sf::Texture> textures;
-
 public:
-	State();
+	State(sf::RenderWindow* window);
 	virtual ~State();
 
-	virtual void update() = 0;
-	virtual void render() = 0;
+	virtual void endState() = 0;
+
+	virtual void update(const float& dt) = 0;
+	virtual void render(sf::RenderTarget* target = nullptr) = 0;
 };
 
